@@ -1,31 +1,105 @@
 
-mutation {
-  createProduct(input: {
-    name: "Widget 2",
-    description: "It's a beautiful widget too",
-    price: 25.99,
-    soldOut: false,
-    stores: [
-      {
-      	store: "Chicago Downtown"
-      },
-      {
-        store: "Uptown"
-      }
-    ]
-  }) {
-    price
-    name
-    description
-    id
-  }
-}
+Creates a product 
+# mutation {
+#   createProduct(input: {
+#     name: "Shovel",
+#     description: "It's used to shovel things!",
+#     price: 30.99,
+#     soldOut: false,
+#     inventory: 15,
+#     stores: [
+#       {
+#         store: "Uptown"
+#       }
+#     ]
+#   }) {
+#     price
+#     name
+#     description
+#     id
+#   }
+# }
 
 
-query {
-  getProduct(id: "53de06d4be7d3b88a00b") {
-    name
-    price
-    description
-  }
+#67ca29071f118b38a156fac4
+#67ca29bc1f118b38a156fac9
+#67ca2beecda48951798580b4
+
+Get a product by id
+# query {
+#   getProduct(id: "67ca2beecda48951798580b4") {
+#     id
+#     name
+#     price
+#     description
+#     inventory
+#   }
+# }
+
+Update a product
+# mutation {
+#   updateProduct(input: {
+#     id: "67ca2eb5b1e4989c9e588916",
+#     price: 40,
+#      stores: [
+#       {
+#       	store: "Chicago Downtown",
+#       },
+#       {
+#         store: "Uptown"
+#       }
+#     ]
+#   }) {
+#     name
+#     price
+#     description
+#   }
+# }
+
+Delete a product
+# mutation {
+#   deleteProduct(id: "67ca29bc1f118b38a156fac9")
+# }
+
+Get all products
+# query {
+#   getAllProducts {
+#     id
+#     name,
+#     description
+#     price
+#   }
+# }
+
+
+
+# query {
+#   product1 : getProduct(id: "67ca29071f118b38a156fac4") {
+#     name
+#     description
+#     price
+#   }
+#     product2 : getProduct(id: "67ca2eb5b1e4989c9e588916") {
+#     name
+#     description
+#     price
+#     inventory
+#   }
+# }
+
+# query {
+#   product1 : getProduct(id: "67ca29071f118b38a156fac4") {
+#     ...product
+#   }
+#     product2 : getProduct(id: "67ca2eb5b1e4989c9e588916") {
+#     ...product
+#     inventory
+#   }
+# }
+
+Fragment for reusable fields
+#fragment product on Product {
+#  name
+#  description
+#  price
 }
