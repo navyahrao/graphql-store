@@ -6,16 +6,21 @@ import resolvers from "./data/resolvers";
 const PORT = 8080;
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('GraphQL')
+app.get("/", (req, res) => {
+  res.send("GraphQL");
 });
 
 const root = resolvers;
 
-app.use('/graphql', graphqlHTTP({
-  schema,
-  rootValue: root,
-  graphiql: true
-}));
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema,
+    rootValue: root,
+    graphiql: true,
+  })
+);
 
-app.listen(PORT, () => console.log(`Running server on localhost:${PORT}/graphql`));
+app.listen(PORT, () =>
+  console.log(`Running server on localhost:${PORT}/graphql`)
+);
